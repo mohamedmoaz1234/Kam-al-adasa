@@ -1,0 +1,1709 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>كام العدسة | حلول مراقبة أمنية متقدمة - الرياض</title>
+    <meta name="description" content="كام العدسة - بيع وتركيب كاميرات مراقبة احترافية في الرياض. حلول أمنية ذكية للمنازل والمنشآت التجارية.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #111118;
+            --bg-card: rgba(255,255,255,0.03);
+            --bg-card-hover: rgba(255,255,255,0.06);
+            --accent: #e8720c;
+            --accent-light: #f59e3f;
+            --accent-glow: rgba(232, 114, 12, 0.15);
+            --accent-glow-strong: rgba(232, 114, 12, 0.3);
+            --text-primary: #f0f0f5;
+            --text-secondary: #9a9ab0;
+            --text-muted: #5a5a72;
+            --border: rgba(255,255,255,0.06);
+            --border-accent: rgba(232, 114, 12, 0.2);
+            --glass: rgba(255,255,255,0.04);
+            --glass-border: rgba(255,255,255,0.08);
+            --radius: 16px;
+            --radius-sm: 10px;
+            --radius-lg: 24px;
+        }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+        /* Grid Background */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+            background-size: 80px 80px;
+            pointer-events: none;
+            z-index: 0;
+        }
+        /* Floating Glows */
+        .glow-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(120px);
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.4;
+        }
+        .glow-orb-1 {
+            width: 500px; height: 500px;
+            background: var(--accent-glow);
+            top: -100px; right: -150px;
+        }
+        .glow-orb-2 {
+            width: 400px; height: 400px;
+            background: rgba(232, 114, 12, 0.08);
+            bottom: 30%; left: -100px;
+        }
+        .glow-orb-3 {
+            width: 350px; height: 350px;
+            background: rgba(232, 114, 12, 0.06);
+            bottom: -50px; right: 20%;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+        }
+        /* ===== HEADER ===== */
+        .header {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            padding: 16px 0;
+            transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .header.scrolled {
+            background: rgba(10, 10, 15, 0.85);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-bottom: 1px solid var(--border);
+            padding: 10px 0;
+        }
+        .header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+        .logo-icon {
+            width: 44px; height: 44px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            display: flex; align-items: center; justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 16px; height: 16px;
+            border: 2.5px solid white;
+            border-radius: 50%;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .logo-icon::before {
+            content: '';
+            position: absolute;
+            width: 6px; height: 6px;
+            background: white;
+            border-radius: 50%;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .logo-text {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+        .nav-links a:hover { color: var(--text-primary); }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px; right: 0;
+            width: 0; height: 2px;
+            background: var(--accent);
+            transition: width 0.3s;
+            border-radius: 2px;
+        }
+        .nav-links a:hover::after { width: 100%; }
+        .header-cta {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: var(--accent);
+            color: white;
+            padding: 10px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        .header-cta:hover {
+            background: var(--accent-light);
+            transform: translateY(-1px);
+            box-shadow: 0 8px 30px var(--accent-glow-strong);
+        }
+        .mobile-toggle {
+            display: none;
+            background: none; border: none; cursor: pointer;
+            width: 36px; height: 36px;
+            flex-direction: column; justify-content: center; align-items: center; gap: 5px;
+        }
+        .mobile-toggle span {
+            display: block; width: 22px; height: 2px;
+            background: var(--text-primary);
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+        .mobile-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
+        .mobile-toggle.active span:nth-child(2) { opacity: 0; }
+        .mobile-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(10, 10, 15, 0.97);
+            backdrop-filter: blur(20px);
+            z-index: 999;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 28px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .mobile-menu.active { display: flex; opacity: 1; }
+        .mobile-menu a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 1.3rem;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        .mobile-menu a:hover { color: var(--accent); }
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .hero-content { position: relative; z-index: 2; }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--glass);
+            border: 1px solid var(--border-accent);
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: var(--accent-light);
+            margin-bottom: 28px;
+        }
+        .hero-badge .dot {
+            width: 7px; height: 7px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.4); }
+        }
+        .hero-title {
+            font-size: clamp(2.2rem, 5vw, 3.4rem);
+            font-weight: 700;
+            line-height: 1.35;
+            margin-bottom: 22px;
+            letter-spacing: -0.02em;
+        }
+        .hero-title .accent { color: var(--accent); }
+        .hero-title .accent-line {
+            position: relative;
+            display: inline;
+        }
+        .hero-title .accent-line::after {
+            content: '';
+            position: absolute;
+            bottom: 2px; right: 0;
+            width: 100%; height: 3px;
+            background: var(--accent);
+            border-radius: 3px;
+            opacity: 0.5;
+        }
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.9;
+            margin-bottom: 36px;
+            max-width: 520px;
+            font-weight: 400;
+        }
+        .hero-actions {
+            display: flex;
+            gap: 14px;
+            margin-bottom: 44px;
+            flex-wrap: wrap;
+        }
+        .btn-primary {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: var(--accent);
+            color: white;
+            padding: 15px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .btn-primary:hover {
+            background: var(--accent-light);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px var(--accent-glow-strong);
+        }
+        .btn-secondary {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: transparent;
+            color: var(--text-primary);
+            padding: 15px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.35s;
+            border: 1px solid var(--glass-border);
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .btn-secondary:hover {
+            background: var(--glass);
+            border-color: var(--border-accent);
+        }
+        .hero-trust {
+            display: flex;
+            gap: 28px;
+            flex-wrap: wrap;
+        }
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+        .trust-item svg { flex-shrink: 0; }
+        /* Hero Visual */
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 450px;
+        }
+        .hero-lens {
+            position: relative;
+            width: 340px; height: 340px;
+        }
+        .lens-outer {
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            border: 2px solid var(--border-accent);
+            animation: rotate-slow 25s linear infinite;
+        }
+        .lens-outer::before {
+            content: '';
+            position: absolute;
+            width: 12px; height: 12px;
+            background: var(--accent);
+            border-radius: 50%;
+            top: -6px; left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 20px var(--accent-glow-strong);
+        }
+        @keyframes rotate-slow { to { transform: rotate(360deg); } }
+        .lens-middle {
+            position: absolute;
+            inset: 30px;
+            border-radius: 50%;
+            border: 1.5px solid rgba(255,255,255,0.06);
+            animation: rotate-slow 18s linear infinite reverse;
+        }
+        .lens-middle::before {
+            content: '';
+            position: absolute;
+            width: 8px; height: 8px;
+            background: var(--accent-light);
+            border-radius: 50%;
+            bottom: -4px; left: 50%;
+            transform: translateX(-50%);
+        }
+        .lens-inner {
+            position: absolute;
+            inset: 65px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            border: 1.5px solid var(--border-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .lens-core {
+            width: 80px; height: 80px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--accent) 0%, rgba(232,114,12,0.3) 50%, transparent 70%);
+            animation: core-pulse 3s ease-in-out infinite;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .lens-core::after {
+            content: '';
+            width: 20px; height: 20px;
+            border-radius: 50%;
+            background: white;
+            opacity: 0.9;
+        }
+        @keyframes core-pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+        /* Floating Data Points */
+        .data-point {
+            position: absolute;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(12px);
+            padding: 10px 16px;
+            border-radius: var(--radius-sm);
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            white-space: nowrap;
+            animation: float 5s ease-in-out infinite;
+        }
+        .data-point .val {
+            color: var(--accent-light);
+            font-weight: 700;
+            font-size: 0.95rem;
+            display: block;
+        }
+        .dp-1 { top: 20px; right: -20px; animation-delay: 0s; }
+        .dp-2 { bottom: 40px; left: -30px; animation-delay: 1.5s; }
+        .dp-3 { top: 50%; right: -60px; animation-delay: 3s; }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        /* ===== TRUST STRIP ===== */
+        .trust-strip {
+            padding: 60px 0;
+            position: relative;
+            z-index: 1;
+        }
+        .trust-strip-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        .trust-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 28px 24px;
+            text-align: center;
+            transition: all 0.4s;
+        }
+        .trust-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-accent);
+            transform: translateY(-3px);
+        }
+        .trust-card-icon {
+            width: 48px; height: 48px;
+            border-radius: 12px;
+            background: var(--accent-glow);
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 14px;
+        }
+        .trust-card h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--text-primary);
+        }
+        .trust-card p {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+        /* ===== SECTION COMMONS ===== */
+        section { padding: 100px 0; position: relative; z-index: 1; }
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 16px;
+        }
+        .section-label::before {
+            content: '';
+            width: 24px; height: 2px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        .section-title {
+            font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+            line-height: 1.4;
+        }
+        .section-subtitle {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            max-width: 580px;
+            line-height: 1.8;
+        }
+        .section-header { margin-bottom: 60px; }
+        .section-header.center { text-align: center; }
+        .section-header.center .section-subtitle { margin: 0 auto; }
+        .divider {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border), transparent);
+        }
+        /* ===== SERVICES ===== */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .service-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 36px 28px;
+            transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0;
+            width: 80px; height: 80px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+        .service-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-accent);
+            transform: translateY(-4px);
+        }
+        .service-card:hover::before { opacity: 1; }
+        .service-icon {
+            width: 52px; height: 52px;
+            border-radius: 14px;
+            background: var(--accent-glow);
+            border: 1px solid var(--border-accent);
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 20px;
+            transition: all 0.4s;
+        }
+        .service-card:hover .service-icon {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+        .service-card:hover .service-icon svg { color: white; }
+        .service-card h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .service-card p {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+        /* ===== WHY US ===== */
+        .why-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        .why-features { display: flex; flex-direction: column; gap: 18px; }
+        .why-feature {
+            display: flex;
+            gap: 16px;
+            padding: 22px;
+            border-radius: var(--radius);
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+        .why-feature:hover {
+            border-color: var(--border-accent);
+            background: var(--bg-card-hover);
+        }
+        .why-feature-icon {
+            width: 44px; height: 44px;
+            min-width: 44px;
+            border-radius: 12px;
+            background: var(--accent-glow);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .why-feature h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .why-feature p {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        .why-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .why-big-number {
+            font-size: 10rem;
+            font-weight: 700;
+            color: var(--accent-glow);
+            line-height: 1;
+            position: absolute;
+            z-index: 0;
+            user-select: none;
+        }
+        .why-stats {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .stat-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(12px);
+            padding: 28px 22px;
+            border-radius: var(--radius);
+            text-align: center;
+            transition: all 0.3s;
+        }
+        .stat-card:hover { border-color: var(--border-accent); }
+        .stat-val {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 4px;
+        }
+        .stat-label {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+        }
+        /* ===== SECTORS ===== */
+        .sectors-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .sector-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 40px 28px;
+            text-align: center;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+        .sector-card:hover {
+            border-color: var(--border-accent);
+            transform: translateY(-4px);
+            background: var(--bg-card-hover);
+        }
+        .sector-icon {
+            width: 64px; height: 64px;
+            border-radius: 50%;
+            background: var(--accent-glow);
+            border: 1px solid var(--border-accent);
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 18px;
+            transition: all 0.4s;
+        }
+        .sector-card:hover .sector-icon {
+            background: var(--accent);
+        }
+        .sector-card:hover .sector-icon svg { color: white; }
+        .sector-card h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .sector-card p {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        /* ===== PROCESS ===== */
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            position: relative;
+        }
+        .process-grid::before {
+            content: '';
+            position: absolute;
+            top: 42px;
+            right: 60px; left: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), var(--border-accent), var(--accent));
+            opacity: 0.3;
+        }
+        .process-step {
+            text-align: center;
+            position: relative;
+        }
+        .step-number {
+            width: 56px; height: 56px;
+            border-radius: 50%;
+            background: var(--bg-card);
+            border: 2px solid var(--border-accent);
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--accent);
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s;
+        }
+        .process-step:hover .step-number {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+            box-shadow: 0 0 30px var(--accent-glow-strong);
+        }
+        .process-step h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .process-step p {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        /* ===== GALLERY ===== */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: auto auto;
+            gap: 16px;
+        }
+        .gallery-item {
+            border-radius: var(--radius);
+            overflow: hidden;
+            position: relative;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            aspect-ratio: 16/10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s;
+            cursor: default;
+        }
+        .gallery-item:hover {
+            border-color: var(--border-accent);
+            transform: scale(1.02);
+        }
+        .gallery-item.large {
+            grid-column: span 2;
+            aspect-ratio: 2/1;
+        }
+        .gallery-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--bg-card) 0%, rgba(232,114,12,0.03) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .gallery-placeholder::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 30% 50%, var(--accent-glow) 0%, transparent 50%);
+            opacity: 0.5;
+        }
+        .gallery-placeholder svg {
+            position: relative;
+            z-index: 1;
+            opacity: 0.4;
+        }
+        .gallery-placeholder span {
+            position: relative;
+            z-index: 1;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+        /* ===== TESTIMONIALS ===== */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .testimonial-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 32px 26px;
+            transition: all 0.3s;
+        }
+        .testimonial-card:hover {
+            border-color: var(--border-accent);
+            background: var(--bg-card-hover);
+        }
+        .testimonial-stars {
+            display: flex;
+            gap: 3px;
+            margin-bottom: 16px;
+        }
+        .testimonial-text {
+            font-size: 0.92rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .testimonial-avatar {
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            background: var(--accent-glow);
+            border: 1px solid var(--border-accent);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+        .testimonial-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        .testimonial-role {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+        /* ===== FAQ ===== */
+        .faq-list {
+            max-width: 750px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: border-color 0.3s;
+        }
+        .faq-item.active { border-color: var(--border-accent); }
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 22px 26px;
+            cursor: pointer;
+            transition: background 0.3s;
+            gap: 16px;
+        }
+        .faq-question:hover { background: var(--bg-card-hover); }
+        .faq-question h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            flex: 1;
+        }
+        .faq-icon {
+            width: 28px; height: 28px;
+            min-width: 28px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.3s;
+        }
+        .faq-item.active .faq-icon {
+            background: var(--accent);
+            border-color: var(--accent);
+            transform: rotate(45deg);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .faq-answer-inner {
+            padding: 0 26px 22px;
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+        /* ===== FINAL CTA ===== */
+        .final-cta {
+            padding: 100px 0;
+            text-align: center;
+        }
+        .cta-box {
+            background: linear-gradient(135deg, rgba(232,114,12,0.08) 0%, rgba(232,114,12,0.02) 100%);
+            border: 1px solid var(--border-accent);
+            border-radius: var(--radius-lg);
+            padding: 70px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-box::before {
+            content: '';
+            position: absolute;
+            top: -100px; left: 50%;
+            transform: translateX(-50%);
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .cta-box > * { position: relative; z-index: 1; }
+        .cta-box h2 {
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        .cta-box p {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            margin-bottom: 36px;
+            max-width: 520px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+        }
+        .cta-actions {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        .cta-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        .cta-info-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+        }
+        /* ===== FOOTER ===== */
+        .footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            position: relative;
+            z-index: 1;
+        }
+        .footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .footer-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .footer-info span {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+        .footer-copy {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+        }
+        /* ===== REVEAL ANIMATION ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+        .reveal-delay-5 { transition-delay: 0.5s; }
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+            .hero-visual { min-height: 320px; }
+            .hero-lens { width: 280px; height: 280px; }
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+            .why-grid { grid-template-columns: 1fr; }
+            .sectors-grid { grid-template-columns: repeat(2, 1fr); }
+            .process-grid { grid-template-columns: repeat(2, 1fr); gap: 30px; }
+            .process-grid::before { display: none; }
+            .testimonials-grid { grid-template-columns: 1fr 1fr; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+            .gallery-item.large { grid-column: span 2; }
+        }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .header-cta.desktop { display: none; }
+            .mobile-toggle { display: flex; }
+            .hero { padding: 100px 0 60px; min-height: auto; }
+            .hero-visual { order: -1; min-height: 260px; }
+            .hero-lens { width: 220px; height: 220px; }
+            .data-point { display: none; }
+            .hero-title { font-size: 1.9rem; }
+            .hero-subtitle { font-size: 0.95rem; }
+            .hero-actions { flex-direction: column; }
+            .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+            .trust-strip-grid { grid-template-columns: repeat(2, 1fr); }
+            .services-grid { grid-template-columns: 1fr; }
+            .sectors-grid { grid-template-columns: 1fr; }
+            .process-grid { grid-template-columns: 1fr; }
+            .testimonials-grid { grid-template-columns: 1fr; }
+            .gallery-grid { grid-template-columns: 1fr; }
+            .gallery-item.large { grid-column: span 1; aspect-ratio: 16/10; }
+            section { padding: 70px 0; }
+            .cta-box { padding: 50px 24px; }
+            .footer .container { flex-direction: column; text-align: center; }
+            .footer-info { justify-content: center; }
+            .cta-info { flex-direction: column; align-items: center; }
+        }
+        @media (max-width: 480px) {
+            .trust-strip-grid { grid-template-columns: 1fr; }
+            .hero-trust { flex-direction: column; gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Ambient Glows -->
+    <div class="glow-orb glow-orb-1"></div>
+    <div class="glow-orb glow-orb-2"></div>
+    <div class="glow-orb glow-orb-3"></div>
+    <!-- ===== HEADER ===== -->
+    <header class="header" id="header">
+        <div class="container">
+            <a href="#" class="logo">
+    <img src="logo.png" alt="كام العدسة" class="logo-img">
+    <div class="logo-text"> </div>
+</a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#services">خدماتنا</a></li>
+                    <li><a href="#why-us">لماذا نحن</a></li>
+                    <li><a href="#sectors">القطاعات</a></li>
+                    <li><a href="#faq">الأسئلة الشائعة</a></li>
+                </ul>
+            </nav>
+            <a href="https://wa.me/966566355917" target="_blank" class="header-cta desktop">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                اطلب عرض سعر
+            </a>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="القائمة">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#services" onclick="closeMobile()">خدماتنا</a>
+        <a href="#why-us" onclick="closeMobile()">لماذا نحن</a>
+        <a href="#sectors" onclick="closeMobile()">القطاعات</a>
+        <a href="#faq" onclick="closeMobile()">الأسئلة الشائعة</a>
+        <a href="https://wa.me/966566355917" target="_blank" class="header-cta" onclick="closeMobile()">اطلب عرض سعر</a>
+    </div>
+    <!-- ===== HERO ===== -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <div class="hero-badge reveal">
+                        <span class="dot"></span>
+                        حلول أمنية ذكية في الرياض
+                    </div>
+                    <h1 class="hero-title reveal reveal-delay-1">
+                        حماية متقدمة<br>
+                        بـ<span class="accent">رؤية لا تغفل</span>
+                    </h1>
+                    <p class="hero-subtitle reveal reveal-delay-2">
+                        نوفّر لك أنظمة مراقبة عالية الدقة بتركيب احترافي ومتابعة مستمرة، لتبقى مطمئنًا على منزلك ومنشأتك أينما كنت.
+                    </p>
+                    <div class="hero-actions reveal reveal-delay-3">
+                        <a href="https://wa.me/966566355917" target="_blank" class="btn-primary">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                            تواصل عبر واتساب
+                        </a>
+                        <a href="tel:0566355917" class="btn-secondary">
+                            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                            اتصل مباشرة
+                        </a>
+                    </div>
+                    <div class="hero-trust reveal reveal-delay-4">
+                        <div class="trust-item">
+                            <svg width="16" height="16" fill="none" stroke="#e8720c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            تركيب معتمد
+                        </div>
+                        <div class="trust-item">
+                            <svg width="16" height="16" fill="none" stroke="#e8720c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                            كاميرات عالية الدقة
+                        </div>
+                        <div class="trust-item">
+                            <svg width="16" height="16" fill="none" stroke="#e8720c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                            مراقبة من الجوال
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-visual reveal reveal-delay-2">
+                    <div class="hero-lens">
+                        <div class="lens-outer"></div>
+                        <div class="lens-middle"></div>
+                        <div class="lens-inner">
+                            <div class="lens-core"></div>
+                        </div>
+                    </div>
+                    <div class="data-point dp-1">
+                        <span class="val">4K Ultra HD</span>
+                        دقة تصوير فائقة
+                    </div>
+                    <div class="data-point dp-2">
+                        <span class="val">24/7</span>
+                        مراقبة مستمرة
+                    </div>
+                    <div class="data-point dp-3">
+                        <span class="val">تحكم ذكي</span>
+                        من أي مكان
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ===== TRUST STRIP ===== -->
+    <section class="trust-strip">
+        <div class="container">
+            <div class="trust-strip-grid">
+                <div class="trust-card reveal">
+                    <div class="trust-card-icon">
+                        <svg width="24" height="24" fill="none" stroke="#e8720c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                    </div>
+                    <h4>تركيب احترافي</h4>
+                    <p>تنفيذ دقيق بأيدي فنيين مختصين</p>
+                </div>
+                <div class="trust-card reveal reveal-delay-1">
+                    <div class="trust-card-icon">
+                        <svg width="24" height="24" fill="none" stroke="#e8720c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                    </div>
+                    <h4>مراقبة من الجوال</h4>
+                    <p>تابع كل شيء من هاتفك أينما كنت</p>
+                </div>
+                <div class="trust-card reveal reveal-delay-2">
+                    <div class="trust-card-icon">
+                        <svg width="24" height="24" fill="none" stroke="#e8720c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <h4>دعم فني مستمر</h4>
+                    <p>فريق دعم جاهز لخدمتك دائمًا</p>
+                </div>
+                <div class="trust-card reveal reveal-delay-3">
+                    <div class="trust-card-icon">
+                        <svg width="24" height="24" fill="none" stroke="#e8720c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                    </div>
+                    <h4>حلول شاملة</h4>
+                    <p>للمنازل والمكاتب والمنشآت التجارية</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="container"><div class="divider"></div></div>
+    <!-- ===== SERVICES ===== -->
+    <section id="services">
+        <div class="container">
+            <div class="section-header center reveal">
+                <div class="section-label">ما نقدمه</div>
+                <h2 class="section-title">خدمات مصممة لحمايتك</h2>
+                <p class="section-subtitle">نقدّم منظومة متكاملة من حلول المراقبة الأمنية، مصممة بعناية لتلبية احتياجاتك بأعلى معايير الجودة والاحترافية.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <svg width="24" height="24" fill="none" stroke="#e8720c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                    </div>
+                    <h3>بيع كاميرات مراقبة</h3>
+                    <p>نوفر أحدث كاميرات المراقبة من علامات تجارية موثوقة، بدقة تصوير فائقة ومواصفات تناسب جميع الاحتياجات.</p>
+                </div>
+                <div class="service-card reveal reveal-delay-1">
+                    <div class="service-icon">
+                        <svg width="24" height="24" fill="none" stroke="#e8720c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                    </div>
+                    <h3>تركيب احترافي</h3>
+                    <p>فريقنا الفني المؤهل يتولى التركيب والإعداد بأعلى معايير الدقة، مع ضمان الأداء الأمثل لكل كاميرا.</p>
+                </div>
+                <div class="service-card reveal reveal-delay-2">
+                    <div class="service-icon">
+                        <svg width="24" height="24" fill="none" stroke="#e8720c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                    </div>
+                    <h3>ربط بالجوال</h3>
+                    <p>نربط كاميراتك بتطبيق سهل على هاتفك الذكي، لتتابع كل التفاصيل لحظة بلحظة من أي مكان في العالم.</p>
+                </div>
+                <div class="service-card reveal reveal-delay-1">
+                    <div class="service-icon">
+                        <svg width="24" height="24" fill="none" stroke="#e8720c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                    </div>
+                    <h3>حلول للمنازل والفلل</h3>
+                    <p>أنظمة مراقبة مصممة خصيصًا لحماية منزلك وعائلتك، بتغطية شاملة لجميع الزوايا والمداخل.</p>
+                </div>
+                <div class="service-card reveal reveal-delay-2">
+                    <div class="service-icon">
+                        <svg width="24" height="24" fill="none" stroke="#e8720c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                    </div>
+                    <h3>حلول للمكاتب والمنشآت</h3>
+                    <p>أنظمة أمنية متقدمة للشركات والمحلات التجارية، مع إمكانية إدارة عدة مواقع من منصة واحدة.</p>
+                </div>
+                <div class="service-card reveal reveal-delay-3">
+                    <div class="service-icon">
+                        <svg width="24" height="24" fill="none" stroke="#e8720c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                    </div>
+                    <h3>صيانة ودعم فني</h3>
+                    <p>خدمة ما بعد التركيب لا تقل أهمية عن التركيب نفسه. نوفر صيانة دورية ودعمًا فنيًا سريعًا ومتواصلًا.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ===== WHY US ===== -->
+    <section id="why-us">
+        <div class="container">
+            <div class="why-grid">
+                <div>
+                    <div class="section-header reveal">
+                        <div class="section-label">لماذا نحن</div>
+                        <h2 class="section-title">لأن أمانك يستحق<br>الأفضل فقط</h2>
+                        <p class="section-subtitle">نؤمن أن الحماية الحقيقية تبدأ من اختيار الشريك المناسب. نقدّم لك خبرة مثبتة وخدمة تتجاوز التوقعات.</p>
+                    </div>
+                    <div class="why-features">
+                        <div class="why-feature reveal reveal-delay-1">
+                            <div class="why-feature-icon">
+                                <svg width="20" height="20" fill="none" stroke="#e8720c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                            </div>
+                            <div>
+                                <h4>جودة لا تقبل المساومة</h4>
+                                <p>نختار فقط المنتجات التي تتجاوز معايير الجودة العالمية لنضمن لك أداءً موثوقًا على المدى الطويل.</p>
+                            </div>
+                        </div>
+                        <div class="why-feature reveal reveal-delay-2">
+                            <div class="why-feature-icon">
+                                <svg width="20" height="20" fill="none" stroke="#e8720c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                            </div>
+                            <div>
+                                <h4>تنفيذ منظم ودقيق</h4>
+                                <p>كل مشروع نتعامل معه بمنهجية واضحة، من المعاينة وحتى التشغيل النهائي، بدون عشوائية أو ارتجال.</p>
+                            </div>
+                        </div>
+                        <div class="why-feature reveal reveal-delay-3">
+                            <div class="why-feature-icon">
+                                <svg width="20" height="20" fill="none" stroke="#e8720c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                            </div>
+                            <div>
+                                <h4>متابعة ما بعد التركيب</h4>
+                                <p>علاقتنا لا تنتهي عند التركيب. نتابع معك ونضمن أن كل شيء يعمل بالشكل الأمثل دائمًا.</p>
+                            </div>
+                        </div>
+                        <div class="why-feature reveal reveal-delay-4">
+                            <div class="why-feature-icon">
+                                <svg width="20" height="20" fill="none" stroke="#e8720c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                            </div>
+                            <div>
+                                <h4>تجربة سهلة وسلسة</h4>
+                                <p>نجعل التقنية في خدمتك لا عبئًا عليك. واجهات استخدام بسيطة وتطبيقات سهلة لمتابعة كل شيء.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="why-visual reveal">
+                    <div class="why-big-number">٪</div>
+                    <div class="why-stats">
+                        <div class="stat-card">
+                            <div class="stat-val">+500</div>
+                            <div class="stat-label">مشروع منجز</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-val">24/7</div>
+                            <div class="stat-label">دعم متواصل</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-val">+98%</div>
+                            <div class="stat-label">رضا العملاء</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-val">4K</div>
+                            <div class="stat-label">دقة فائقة</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="container"><div class="divider"></div></div>
+    <!-- ===== SECTORS ===== -->
+    <section id="sectors">
+        <div class="container">
+            <div class="section-header center reveal">
+                <div class="section-label">قطاعاتنا</div>
+                <h2 class="section-title">حلول أمنية لكل مكان</h2>
+                <p class="section-subtitle">نصمم كل نظام مراقبة ليتناسب تمامًا مع طبيعة المكان ومتطلبات الحماية الخاصة به.</p>
+            </div>
+            <div class="sectors-grid">
+                <div class="sector-card reveal">
+                    <div class="sector-icon">
+                        <svg width="28" height="28" fill="none" stroke="#e8720c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                    </div>
+                    <h3>المنازل</h3>
+                    <p>أمان عائلتك يبدأ من هنا. كاميرات داخلية وخارجية بتصميم أنيق.</p>
+                </div>
+                <div class="sector-card reveal reveal-delay-1">
+                    <div class="sector-icon">
+                        <svg width="28" height="28" fill="none" stroke="#e8720c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/><path d="M2 22h20"/></svg>
+                    </div>
+                    <h3>الفلل</h3>
+                    <p>تغطية شاملة للمساحات الواسعة مع أنظمة متقدمة للحدائق والأسوار.</p>
+                </div>
+                <div class="sector-card reveal reveal-delay-2">
+                    <div class="sector-icon">
+                        <svg width="28" height="28" fill="none" stroke="#e8720c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                    </div>
+                    <h3>المكاتب</h3>
+                    <p>بيئة عمل آمنة ومراقبة ذكية لحماية بياناتك وموظفيك.</p>
+                </div>
+                <div class="sector-card reveal reveal-delay-1">
+                    <div class="sector-icon">
+                        <svg width="28" height="28" fill="none" stroke="#e8720c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 5 20 16 16 13 16 8"/></svg>
+                    </div>
+                    <h3>الشركات</h3>
+                    <p>أنظمة مراقبة مركزية متعددة المواقع مع تحكم إداري شامل.</p>
+                </div>
+                <div class="sector-card reveal reveal-delay-2">
+                    <div class="sector-icon">
+                        <svg width="28" height="28" fill="none" stroke="#e8720c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                    </div>
+                    <h3>المحلات التجارية</h3>
+                    <p>حماية متكاملة لنقاط البيع والمخازن والمداخل على مدار الساعة.</p>
+                </div>
+                <div class="sector-card reveal reveal-delay-3">
+                    <div class="sector-icon">
+                        <svg width="28" height="28" fill="none" stroke="#e8720c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                    </div>
+                    <h3>المنشآت التجارية</h3>
+                    <p>حلول أمنية شاملة للمجمعات والمنشآت الكبرى بإدارة مركزية.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ===== PROCESS ===== -->
+    <section>
+        <div class="container">
+            <div class="section-header center reveal">
+                <div class="section-label">آلية العمل</div>
+                <h2 class="section-title">أربع خطوات نحو حمايتك</h2>
+                <p class="section-subtitle">نتبع منهجية واضحة ومنظمة لضمان حصولك على أفضل نظام مراقبة يناسب احتياجاتك تمامًا.</p>
+            </div>
+            <div class="process-grid">
+                <div class="process-step reveal">
+                    <div class="step-number">١</div>
+                    <h3>تواصل معنا</h3>
+                    <p>أخبرنا عن احتياجاتك عبر الواتساب أو الاتصال المباشر، وسنستمع لك بعناية.</p>
+                </div>
+                <div class="process-step reveal reveal-delay-1">
+                    <div class="step-number">٢</div>
+                    <h3>تحديد الحل المناسب</h3>
+                    <p>نعاين الموقع ونقترح النظام الأمثل الذي يغطي جميع احتياجاتك بدقة.</p>
+                </div>
+                <div class="process-step reveal reveal-delay-2">
+                    <div class="step-number">٣</div>
+                    <h3>التركيب والإعداد</h3>
+                    <p>تركيب احترافي سريع ومنظم مع ضبط جميع الإعدادات وربط الكاميرات بجوالك.</p>
+                </div>
+                <div class="process-step reveal reveal-delay-3">
+                    <div class="step-number">٤</div>
+                    <h3>المتابعة والدعم</h3>
+                    <p>بعد التشغيل نبقى معك. دعم فني مستمر وصيانة دورية لضمان الأداء الأمثل.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="container"><div class="divider"></div></div>
+    <!-- ===== GALLERY ===== -->
+    <section>
+        <div class="container">
+            <div class="section-header center reveal">
+                <div class="section-label">من أعمالنا</div>
+                <h2 class="section-title">نماذج من مشاريعنا</h2>
+                <p class="section-subtitle">نفتخر بكل مشروع ننفذه، ونحرص أن يعكس مستوى الجودة والاحترافية التي نلتزم بها.</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item large reveal">
+                    <div class="gallery-placeholder">
+                        <svg width="48" height="48" fill="none" stroke="#e8720c" stroke-width="1.5" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                        <span>نظام مراقبة متكامل - فيلا سكنية</span>
+                    </div>
+                </div>
+                <div class="gallery-item reveal reveal-delay-1">
+                    <div class="gallery-placeholder">
+                        <svg width="40" height="40" fill="none" stroke="#e8720c" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                        <span>مراقبة مكتبية ذكية</span>
+                    </div>
+                </div>
+                <div class="gallery-item reveal reveal-delay-1">
+                    <div class="gallery-placeholder">
+                        <svg width="40" height="40" fill="none" stroke="#e8720c" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        <span>نظام أمني لمجمع تجاري</span>
+                    </div>
+                </div>
+                <div class="gallery-item reveal reveal-delay-2">
+                    <div class="gallery-placeholder">
+                        <svg width="40" height="40" fill="none" stroke="#e8720c" stroke-width="1.5" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                        <span>ربط ومتابعة عن بعد</span>
+                    </div>
+                </div>
+                <div class="gallery-item large reveal reveal-delay-2">
+                    <div class="gallery-placeholder">
+                        <svg width="48" height="48" fill="none" stroke="#e8720c" stroke-width="1.5" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 5 20 16 16 13 16 8"/></svg>
+                        <span>كاميرات خارجية عالية الدقة - مشروع سكني</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ===== TESTIMONIALS ===== -->
+    <section>
+        <div class="container">
+            <div class="section-header center reveal">
+                <div class="section-label">آراء عملائنا</div>
+                <h2 class="section-title">ثقة عملائنا فخرنا</h2>
+                <p class="section-subtitle">نعتز بثقة عملائنا ونسعى دائمًا لتقديم تجربة تستحق التوصية.</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card reveal">
+                    <div class="testimonial-stars">
+                        <svg width="16" height="16" fill="#e8720c" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <svg width="16" height="16" fill="#e8720c" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <svg width="16" height="16" fill="#e8720c" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <svg width="16" height="16" fill="#e8720c" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <svg width="16" height="16" fill="#e8720c" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    </div>
+                    <p class="testimonial-text">"تعاملت مع كام العدسة لتركيب كاميرات في الفيلا، وكانت التجربة ممتازة من أول تواصل وحتى التشغيل النهائي. شغل نظيف واحترافي."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">أ</div>
+                        <div>
+                            <div class="testimonial-name">أبو عبدالله</div>
+                            <div class="testimonial-role">صاحب فيلا - حي النرجس</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal reveal-delay-1">
+                    <div class="testimonial-stars">
+                        <svg width="16" height="16" fill="#e8720c" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <svg width="16" height="16" fill="#e8720c" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <svg width="16" height="16" fill="#e8720c" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <svg width="16" height="16" fill="#e8720c" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <svg width="16" height="16" fill="#e8720c" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    </div>
+                    <p class="testimonial-text">"ركبنا نظام مراقبة كامل للمحل ومتابعة من الجوال. الصورة واضحة جدًا والربط كان سريع. أنصح فيهم بقوة."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">م</div>
+                        <div>
+                            <div class="testimonial-name">محمد الشهري</div>
+                            <div class="testimonial-role">صاحب محل تجاري - طريق الملك فهد</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal reveal-delay-2">
+                    <div class="testimonial-stars">
+                        <svg width="16" height="16" fill="#e8720c" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <svg width="16" height="16" fill="#e8720c" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <svg width="16" height="16" fill="#e8720c" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <svg width="16" height="16" fill="#e8720c" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <svg width="16" height="16" fill="#e8720c" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    </div>
+                    <p class="testimonial-text">"الدعم الفني ممتاز والتعامل راقي. ركبوا لنا كاميرات في مكتب الشركة وكل شيء يعمل بسلاسة. شكرًا كام العدسة."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">خ</div>
+                        <div>
+                            <div class="testimonial-name">خالد العتيبي</div>
+                            <div class="testimonial-role">مدير شركة - حي الملقا</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="container"><div class="divider"></div></div>
+    <!-- ===== FAQ ===== -->
+    <section id="faq">
+        <div class="container">
+            <div class="section-header center reveal">
+                <div class="section-label">أسئلة شائعة</div>
+                <h2 class="section-title">إجابات لأكثر الأسئلة شيوعًا</h2>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item reveal" data-faq>
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h4>هل يمكنني متابعة الكاميرات من هاتفي الجوال؟</h4>
+                        <div class="faq-icon">
+                            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            نعم بالتأكيد. نقوم بربط جميع الكاميرات بتطبيق سهل الاستخدام على هاتفك الذكي (أندرويد وآيفون)، مما يتيح لك المتابعة المباشرة من أي مكان في العالم وفي أي وقت.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item reveal reveal-delay-1" data-faq>
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h4>كم يستغرق تركيب نظام المراقبة؟</h4>
+                        <div class="faq-icon">
+                            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            يعتمد ذلك على حجم المشروع وعدد الكاميرات. عادةً يتم تركيب نظام منزلي كامل خلال يوم عمل واحد. المشاريع الأكبر قد تحتاج من يومين إلى ثلاثة أيام. نحرص على سرعة التنفيذ دون التأثير على جودة العمل.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item reveal reveal-delay-2" data-faq>
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h4>هل تقدمون خدمة الصيانة بعد التركيب؟</h4>
+                        <div class="faq-icon">
+                            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            بالتأكيد. نقدم دعمًا فنيًا مستمرًا وصيانة دورية لضمان عمل الكاميرات بكفاءة عالية. فريقنا جاهز لمساعدتك في أي وقت سواء عن بُعد أو بزيارة ميدانية.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item reveal reveal-delay-3" data-faq>
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h4>ما أنواع الكاميرات التي توفرونها؟</h4>
+                        <div class="faq-icon">
+                            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            نوفر مجموعة متنوعة تشمل كاميرات داخلية وخارجية، كاميرات ثابتة ومتحركة (PTZ)، كاميرات رؤية ليلية، وكاميرات بدقة تصل إلى 4K. نختار لك الأنسب حسب طبيعة المكان واحتياجاتك الأمنية.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ===== FINAL CTA ===== -->
+    <section class="final-cta">
+        <div class="container">
+            <div class="cta-box reveal">
+                <h2>جاهز لتأمين مكانك؟</h2>
+                <p>تواصل معنا الآن واحصل على استشارة مجانية وعرض سعر مخصص لاحتياجاتك. فريقنا جاهز لخدمتك.</p>
+                <div class="cta-actions">
+                    <a href="https://wa.me/966566355917" target="_blank" class="btn-primary">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                        تواصل عبر واتساب
+                    </a>
+                    <a href="tel:0566355917" class="btn-secondary">
+                        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        اتصل الآن: 0566355917
+                    </a>
+                </div>
+                <div class="cta-info">
+                    <div class="cta-info-item">
+                        <svg width="16" height="16" fill="none" stroke="#e8720c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        الرياض - حي السعادة - شارع المعرفة
+                    </div>
+                    <div class="cta-info-item">
+                        <svg width="16" height="16" fill="none" stroke="#e8720c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        0566355917
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-info">
+                <a href="#" class="logo" style="text-decoration:none;">
+                    <div class="logo-icon" style="width:34px;height:34px;border-radius:10px;"></div>
+                    <span class="logo-text" style="font-size:1.05rem;">كام العدسة</span>
+                </a>
+                <span>الرياض - المملكة العربية السعودية</span>
+                <span>0566355917</span>
+            </div>
+            <div class="footer-copy">
+                © 2025 كام العدسة. جميع الحقوق محفوظة.
+            </div>
+        </div>
+    </footer>
+    <script>
+        // ===== Sticky Header =====
+        const header = document.getElementById('header');
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            if (currentScroll > 60) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+            lastScroll = currentScroll;
+        }, { passive: true });
+        // ===== Mobile Menu =====
+        const mobileToggle = document.getElementById('mobileToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileToggle.addEventListener('click', () => {
+            mobileToggle.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        });
+        function closeMobile() {
+            mobileToggle.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        // ===== Scroll Reveal =====
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+        revealElements.forEach(el => revealObserver.observe(el));
+        // ===== FAQ Accordion =====
+        function toggleFAQ(questionEl) {
+            const item = questionEl.closest('.faq-item');
+            const answer = item.querySelector('.faq-answer');
+            const isActive = item.classList.contains('active');
+            // Close all
+            document.querySelectorAll('.faq-item').forEach(fi => {
+                fi.classList.remove('active');
+                fi.querySelector('.faq-answer').style.maxHeight = null;
+            });
+            // Open clicked if was closed
+            if (!isActive) {
+                item.classList.add('active');
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+            }
+        }
+        // ===== Smooth scroll for anchor links =====
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
